@@ -1,12 +1,42 @@
 import './App.css';
 import  Home  from "./Components/Home/Home";
+import Navbar from './Components/Navbar/Navbar';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Login from './Components/Login/Login';
+import { createContext, useState } from 'react';
+import Destination from './Components/Destination/Destination';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+
+export const UserContext = createContext();
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
-    <div className="App">
-      <Home></Home>
-    </div>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <p>name: {loggedInUser.displayName}</p>
+      <Router>
+      <Navbar></Navbar>
+        <Switch>
+          <Route path="/home">
+            <Home></Home>
+          </Route>
+          <Route exact path="/">
+            <Home></Home>
+          </Route>
+          <PrivateRoute path="/transportation/:vehicle">
+            <Destination></Destination>
+          </PrivateRoute>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

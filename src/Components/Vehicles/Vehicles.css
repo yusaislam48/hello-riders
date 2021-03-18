@@ -1,0 +1,11 @@
+.vehicle{
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+.vehicle img{
+    width: 150px;
+}
+.vehicle:hover{
+    cursor: pointer;
+}

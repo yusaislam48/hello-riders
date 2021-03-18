@@ -10,10 +10,13 @@ const Home = () => {
     }, []);
 
     return (
-        <div className='home-sec'>
-        {
-            vehicleData.map(vh => <Vehicles key={vh.id} vh={vh}></Vehicles>)
-        }
+        <div className='home-sec  d-flex justify-content-center align-items-center'>
+            <div className="row container">
+                {
+                    vehicleData.map(vh => <Vehicles key={vh.id} vh={vh}></Vehicles>)
+                }
+            </div>
+        
         </div>
     );
 };
