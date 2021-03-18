@@ -1,0 +1,7 @@
+.home-sec{
+    height: 100vh;
+    background-image: url('../../images/Bg.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
