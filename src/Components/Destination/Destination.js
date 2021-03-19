@@ -12,7 +12,7 @@ const Destination = () => {
     const [searchBtnClicked, setSearchBtnClicked] = useState(false);
     let setDestination = {from: '', to: ''};
 
-    const handleBlur = () =>{
+    const handleBlur = (event) =>{
         if(event.target.name === 'from'){
             setDestination.from = event.target.value;
         }
