@@ -35,7 +35,14 @@ const Login = () => {
     return (
         <div className='d-flex justify-content-center'>
             <div>
-                <button onClick={handleGoogleSignIn}  type="button" class="btn btn-danger">Sign In</button>
+                <div>
+                    <button onClick={handleGoogleSignIn}  type="button" class="btn btn-danger">Sign In</button>
+                </div>
+                <div>
+                    <input placeholder='Email' type="text" value=''/><br/>
+                    <input placeholder='Password' type="password" value=''/><br/>
+                    <button>Submit</button>
+                </div>
             </div>
         </div>
     );
