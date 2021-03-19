@@ -7,7 +7,7 @@ const Home = () => {
     const [vehicleData, setVehicleData] = useState([]);
     useEffect(()=>{
       setVehicleData(data);
-    }, [vehicleData]);
+    }, []);
 
     return (
         <div className='home-sec  d-flex justify-content-center align-items-center'>
