@@ -23,9 +23,10 @@ const Login = () => {
         firebase.auth().signInWithPopup(provider)
         .then((result) => {
             /** @type {firebase.auth.OAuthCredential} */
-            var user = result.user;
-            console.log(user);
-            setLoggedInUser(user);
+            var {displayName, email} = result.user;
+            const signedInUser = {name: displayName, email: email, vehicleClicked: ''};
+            console.log(signedInUser);
+            setLoggedInUser(signedInUser);
             history.replace(from);
         }).catch((error) => {
 
