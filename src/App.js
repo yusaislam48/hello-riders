@@ -10,7 +10,6 @@ import Login from './Components/Login/Login';
 import { createContext, useState } from 'react';
 import Destination from './Components/Destination/Destination';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import GoogleMap from './Components/GoogleMap/GoogleMap';
 
 export const UserContext = createContext();
 
@@ -20,7 +19,6 @@ function App() {
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <p>name: {loggedInUser.displayName}</p>
-      <GoogleMap></GoogleMap>
       <Router>
       <Navbar></Navbar>
         <Switch>

@@ -1,35 +1,29 @@
 import React from 'react';
+import GoogleMap from '../GoogleMap/GoogleMap';
 import './Destination.css';
 
 const Destination = () => {
+    const handleBlur = () =>{
+        // console.log(event.target.name, event.target.value);
+    }
     return (
         <div className='container mt-5'>
-            <div className='row'>
+            <div  className='row'>
                 <div className="col-md-4 destination-form  p-4">
-                    {/* <form> */}
+                    <form>
                         <div className="mb-3">
                             <label className="form-label">From</label>
-                            <input type="text" className="form-control"/>
+                            <input name="from" onBlur={handleBlur} type="text" className="form-control"/>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">To</label>
-                            <input type="text" className="form-control"/>
+                            <input name="to" onBlur={handleBlur} type="text" className="form-control"/>
                         </div> 
                         <button onClick={()=>console.log('search')}  type="button" class="btn btn-danger">Sign In</button>
-                    {/* </form> */}
+                    </form>
                 </div>
-
-                <div className="col-md-8">
-                {/* <iframe
-                    width="600"
-                    height="450"
-                    style="border:0"
-                    loading="lazy"
-                    allowfullscreen
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD8zm5uiwVSn8EVFZzyW68PvNcqZzsuprY
-                        &q=Space+Needle,Seattle+WA">
-                </iframe> */}
-                <h1>map</h1>
+                <div style={{height:"70vh"}} className="col-md-8">
+                    <GoogleMap></GoogleMap>
                 </div>
             </div>
         </div>
