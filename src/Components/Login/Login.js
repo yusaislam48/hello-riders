@@ -15,6 +15,11 @@ if (!firebase.apps.length) {
 const Login = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const [newUser, setNewUser] = useState(false);
+    const [passCode, setPassCode] = useState();
+    const [confirmPassCode, setConfirmPassCode] = useState({
+        isMatched: false,
+        message: ''
+    });
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [user, setUser] = useState({
         isSignedIn: false,
@@ -23,6 +28,8 @@ const Login = () => {
         password: '',
         photo: '',
         error: '',
+        passwordVerify: '',
+        emailVerify: '',
         success: false
     });
     const history = useHistory();
@@ -46,22 +53,55 @@ const Login = () => {
 
         });
     };
-
+    
     const handleBlur =(e)=>{
         let isFieldValid = true;
+        let newUserInfo;
         if (e.target.name === 'email') {
             const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             isFieldValid = re.test(e.target.value);
+
+            newUserInfo = {...user};
+            newUserInfo.emailVerify = 'Please follow this method [abcd@gmail.com]';
+            setUser(newUserInfo);
         }
         if (e.target.name === 'password') {
             const isPasswordValid = e.target.value.length > 6;
             const passwordHasNumber = /\d{1}/.test(e.target.value);
             isFieldValid = isPasswordValid && passwordHasNumber;
+            
+            newUserInfo = {...user};
+            newUserInfo.passwordVerify = 'Password should be 7 character & have to be min 1 number';
+            setUser(newUserInfo);
+            setPassCode(e.target.value);
         }
+        if (e.target.name === 'confirmPassword') {
+            if (e.target.value == passCode) {
+                const isPassMatched = {
+                    isMatched: true,
+                    message: "Password Matched"
+                }
+                setConfirmPassCode(isPassMatched);
+                isFieldValid = false;
+            }
+        }
+        
         if (isFieldValid) {
             const newUserInfo = {...user};
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo);
+
+            newUserInfo.passwordVerify = '';
+            setUser(newUserInfo);
+            
+            newUserInfo.emailVerify = '';
+            setUser(newUserInfo);
+
+            const isPassMatched = {
+                isMatched: true,
+                message: "Password didn't matched"
+            }
+            setConfirmPassCode(isPassMatched);
         }
     };
 
@@ -144,6 +184,7 @@ const Login = () => {
                         <div className="form-group">
                             <label for="exampleInputPassword1">Password</label>
                             <input required onBlur={handleBlur} name="password" required type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                            <small id="emailHelp" className="form-text text-muted">Password should be 7 character & have to be min 1 number</small>
                         </div>
 
                         {newUser && <div className="form-group">
@@ -153,13 +194,18 @@ const Login = () => {
 
                         <div className="form-group form-check">
                             <input onChange={() => setNewUser(!newUser)} name="newUser" type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                            <label className="form-check-label" for="exampleCheck1">Sing Up</label>
+                            <label className="form-check-label" for="exampleCheck1">Didn't have any account? Create account!</label>
                         </div>
                         <button type="submit" className="btn btn-primary">{newUser?'Create Account':'Log In'}</button>
                         
                     </form>
                     <br/>
+                    {
+                       confirmPassCode.isMatched && <h6 style={{color:"red"}}>{confirmPassCode.message}</h6>
+                    }
                     <h6 style={{color:"red"}}>{user.error}</h6>
+                    <h6 style={{color:"red"}}>{user.passwordVerify}</h6>
+                    <h6 style={{color:"red"}}>{user.emailVerify}</h6>
                     { user.success && <h6 style={{color:"green"}}>User {newUser ? 'created' : "Logged In"} Successfully!</h6> }
                 </div>
                 
