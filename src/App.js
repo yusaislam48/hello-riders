@@ -15,7 +15,14 @@ import RequestRide from './Components/RequestRide/RequestRide';
 export const UserContext = createContext();
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({
+    isSignedIn: false,
+    name: '',
+    email: '',
+    password: '',
+    photo: ''
+  });
+  console.log(loggedInUser)
 
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
