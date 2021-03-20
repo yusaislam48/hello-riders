@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import './Destination.css';
-import bikeImg from '../../images/Frame.png'
-import busImg from '../../images//Frame-1.png'
-import carImg from '../../images/Frame-2.png'
-import trainImg from '../../images/Group.png'
 import { useParams } from 'react-router';
+import DestinationVehicle from '../DestinationVehicle/DestinationVehicle';
 
 
 const Destination = () => {
     const {vehicle} =useParams();
-    console.log(vehicle);
     const [destinations, setDestinations] = useState({});
     const [searchBtnClicked, setSearchBtnClicked] = useState(false);
     let setDestination = {from: '', to: ''};
@@ -39,28 +35,13 @@ const Destination = () => {
                             <h4>● {destinations?.to}</h4>
                         </div>
                         <div className="fees p-3 m-2">
-                            <div className="row d-flex justify-content-center align-items-center">
-                                <div className='col-md-3'><img src={vehicle==="CAR"? carImg : vehicle==="BIKE"? bikeImg : vehicle==="BUS"? busImg : vehicle==="TRAIN"? trainImg : bikeImg} alt=""/></div>
-                                <div className='col-md-3'><h5>{vehicle}</h5></div>
-                                <div className='col-md-3'><h4>4</h4></div>
-                                <div className='col-md-3'><h4>$67</h4></div>
-                            </div>
+                            <DestinationVehicle vehicle={vehicle}></DestinationVehicle>
                         </div>
                         <div className="fees p-3 m-2">
-                            <div className="row d-flex justify-content-center align-items-center">
-                                <div className='col-md-3'><img src={vehicle==="CAR"? carImg : vehicle==="BIKE"? bikeImg : vehicle==="BUS"? busImg : vehicle==="TRAIN"? trainImg : bikeImg} alt=""/></div>
-                                <div className='col-md-3'><h5>{vehicle}</h5></div>
-                                <div className='col-md-3'><h4>4</h4></div>
-                                <div className='col-md-3'><h4>$67</h4></div>
-                            </div>
+                            <DestinationVehicle vehicle={vehicle}></DestinationVehicle>
                         </div>
                         <div className="fees p-3 m-2">
-                            <div className="row d-flex justify-content-center align-items-center">
-                                <div className='col-md-3'><img src={vehicle==="CAR"? carImg : vehicle==="BIKE"? bikeImg : vehicle==="BUS"? busImg : vehicle==="TRAIN"? trainImg : bikeImg} alt=""/></div>
-                                <div className='col-md-3'><h5>{vehicle}</h5></div>
-                                <div className='col-md-3'><h4>4</h4></div>
-                                <div className='col-md-3'><h4>$67</h4></div>
-                            </div>
+                            <DestinationVehicle vehicle={vehicle}></DestinationVehicle>
                         </div>
                     </div>
                     :<div className="col-md-4 destination-form  p-4">
