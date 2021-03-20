@@ -1,0 +1,15 @@
+.link h5{
+    color: black;
+    font-weight: 400;
+    margin-right: 10px;
+}
+.loggedInUserName{
+    color: white;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-weight: 600;
+}
+img{
+    width: 160px;
+}

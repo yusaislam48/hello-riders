@@ -11,6 +11,7 @@ import { createContext, useState } from 'react';
 import Destination from './Components/Destination/Destination';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import RequestRide from './Components/RequestRide/RequestRide';
+import Appbar from './Components/Navbar/Appbar';
 
 export const UserContext = createContext();
 
@@ -27,7 +28,7 @@ function App() {
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
-      <Navbar></Navbar>
+        <Appbar></Appbar>
         <Switch>
           <Route path="/home">
             <Home></Home>
