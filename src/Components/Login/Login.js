@@ -4,6 +4,7 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
+import './Login.css';
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -127,8 +128,8 @@ const Login = () => {
     
     return (
         <div className='d-flex justify-content-center'>
-            <div>
-                <div className='mb-5 mt-5'>
+            <div className="mb-5">
+                <div className='mb-5 mt-5 user-form'>
                     <form onSubmit={handleSubmit}>
                     {/* custom login  */}
                         { newUser && <div className="form-group">
@@ -144,6 +145,12 @@ const Login = () => {
                             <label for="exampleInputPassword1">Password</label>
                             <input required onBlur={handleBlur} name="password" required type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
                         </div>
+
+                        {newUser && <div className="form-group">
+                            <label for="exampleInputPassword2">Confirm Password</label>
+                            <input required onBlur={handleBlur} name="confirmPassword" required type="password" className="form-control" id="exampleInputPassword2" placeholder="Confirm Password"/>
+                        </div>}
+
                         <div className="form-group form-check">
                             <input onChange={() => setNewUser(!newUser)} name="newUser" type="checkbox" className="form-check-input" id="exampleCheck1"/>
                             <label className="form-check-label" for="exampleCheck1">Sing Up</label>
@@ -153,11 +160,15 @@ const Login = () => {
                     </form>
                     <br/>
                     <h6 style={{color:"red"}}>{user.error}</h6>
-                    { user.success && <h6 style={{color:"green"}}>User {newUser ? 'created' : "Logged In"} Successfull!</h6> }
+                    { user.success && <h6 style={{color:"green"}}>User {newUser ? 'created' : "Logged In"} Successfully!</h6> }
                 </div>
                 
-                <div>
+                {/* <div>
                     <button onClick={handleGoogleSignIn}  type="button" className="btn btn-danger">Sign In</button>
+                </div> */}
+
+                <div onClick={handleGoogleSignIn} className='signInWithGoogle'>
+                    Continue with Google
                 </div>
             </div>
         </div>
