@@ -1,6 +1,6 @@
 # Hello Riders
 
-Project Live Link: [Visit Leagues Mania](https://hello-riders-49976.web.app).
+Project Live Link: [Visit Hello Riders](https://hello-riders-49976.web.app).
 
 ## Core Features
 
