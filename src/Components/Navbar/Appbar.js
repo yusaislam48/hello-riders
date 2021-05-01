@@ -7,26 +7,44 @@ import logo from '../../images/logo.png'
 const Appbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     return (
-        <div className="container">
-            <div className="row p-1">
-                <div className="col-md-4">
-                <img src={logo} alt=""/>
-                </div>
-                <div className="col-md-8 d-flex justify-content-end align-items-center link">
-                    <Link to="/home"><h5>Home</h5></Link>
-                    <Link to="/destination"><h5>Destination</h5></Link>
-                    <Link to="/"><h5>Blog</h5></Link>
-                    
-                    {
-                        loggedInUser.name 
-                        ? <h4 className="loggedInUserName">{loggedInUser.name}</h4>
-                        : <Link to="/login">
-                            <button  type="button" class="btn btn-danger">Login</button>
-                        </Link>
-                    }
+        <nav style={{fontWeight:"700"}} className="navbar navbar-expand-lg navbar-light">
+            <div className="container-fluid">
+                {/* <a className="navbar-brand" href="#">JhotPhot Delivery</a> */}
+                
+                <Link className="navbar-brand" to="/">
+                        <img style={{width: '210px'}} src={logo} alt=""/>
+                </Link>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to='/destination'>Destination</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to='/'>Blog</Link>
+                        </li>
+                        
+                        {
+                            loggedInUser.name 
+                            ?  <li className="nav-item">
+                                    <button type="button" disabled className="btn btn-danger">{loggedInUser.name }</button>
+                                </li>
+                            :   <li className="nav-item">
+                                    <Link to="/login">
+                                        <button type="button" className="btn btn-dark">Login</button>
+                                    </Link>
+                                </li>
+                        }
+                    </ul>
                 </div>
             </div>
-        </div>
+        </nav>
+
     );
 };
 
