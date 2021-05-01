@@ -1,6 +1,6 @@
 import React from 'react';
 import './RequestRide.css';
-import bikeImg from '../../images/Frame.png'
+import bikeImg from '../../images/bike.png'
 import GoogleMap from '../GoogleMap/GoogleMap';
 
 const RequestRide = (props) => {

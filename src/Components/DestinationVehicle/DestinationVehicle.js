@@ -1,8 +1,8 @@
 import React from 'react';
-import bikeImg from '../../images/Frame.png'
-import busImg from '../../images//Frame-1.png'
-import carImg from '../../images/Frame-2.png'
-import trainImg from '../../images/Group.png'
+import bikeImg from '../../images/bike.png'
+import busImg from '../../images/bus.png'
+import carImg from '../../images/car.png'
+import trainImg from '../../images/train.png'
 
 const DestinationVehicle = (props) => {
     const {vehicle} = props;
